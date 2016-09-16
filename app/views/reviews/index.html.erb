@@ -1,0 +1,50 @@
+<script src="//maps.google.com/maps/api/js?v=3&amp;sensor=false&amp;libraries=geometry" type="text/javascript"></script>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-6">
+    <table style="margin-left: 20px">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Score</th>
+          <th>Url</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= link_to review.name, review.url, target: "_blank" %></td>
+            <td><%= review.address %></td>
+            <td><%= review.score %></td>
+            <td><%= link_to 'Show', review %></td>
+            <td><%= link_to 'Edit', edit_review_path(review) %></td>
+            <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr />
+
+    <%= link_to 'New Review', new_review_path %>
+    <br>
+  </div>
+  <% if @reviews.any? %>
+    <div class="col-md-6" style="width: 600px;">
+      <h3>Pizza Reviews</h3>
+      <br/>
+      <div id="map" style="width: 600px; height: 400px;"></div>
+      <script>
+        var handler = Gmaps.build('Google');
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+          markers = handler.addMarkers(<%=raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+        });
+      </script>
+    </div>
+  <% end %>
+</div>
