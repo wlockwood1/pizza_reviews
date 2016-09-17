@@ -1,0 +1,8 @@
+<tr>
+  <td><%= review.review_date %></td>
+  <td><%= link_to review.name, review.url, target: "_blank" %></td>
+  <td><%= review.address %></td>
+  <td><%= review.score %></td>
+  <td><%= link_to 'Edit', edit_review_path(review), remote: true, class: "btn btn-default" %></td>
+  <td><%= link_to 'Delete', review_delete_path(review), remote: true, class: "btn btn-danger" %></td>
+</tr>

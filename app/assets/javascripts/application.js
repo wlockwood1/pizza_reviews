@@ -17,4 +17,5 @@
 //= require underscore
 //= require gmaps/google
 //= require markerclusterer
+//= require bootstrap-datepicker
 //= require_tree .

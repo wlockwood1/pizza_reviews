@@ -30,6 +30,15 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'markerclustererplus-rails'
 gem 'underscore-rails'
+
+#Datepicker
+gem 'bootstrap-datepicker-rails'
+
+#Respond_to actions
+gem 'responders'
+
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,11 @@
+<% @reviews.each do |review| %>
+  <tr>
+    <td><%= review.review_date %></td>
+    <td class="review_name" data-id="<%= review.id %>"><a><%= review.name %></a></td>
+    <td><%= review.address %></td>
+    <td><%= review.score %></td>
+    <td><%= link_to review.url, "Video", target: "_blank" %></td>
+    <td><%= link_to "Edit", edit_review_path(review), remote: true, class: "btn btn-default" %></td>
+    <td><%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger delete_review" %></td>
+  </tr>
+<% end %>

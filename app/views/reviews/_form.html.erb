@@ -1,33 +1,29 @@
-<%= form_for(@review) do |f| %>
-  <% if @review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-      <ul>
-      <% @review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="modal-body">
+    <%= form_for(@review, remote: true, html: { style: "display:inline;" }) do |f| %>
+      <ul class="errors"></ul>
+      <div class="form-group">
+        <%= f.label :review_date %><br>
+        <%= f.date_field :review_date, as: :date_picker, :value => Time.now.strftime('%Y-%m-%d') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, placeholder: "Enter name of pizza place" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address %><br>
+        <%= f.text_field :address, placeholder: "Enter full address (street, city, state). Ex: 800 6th Ave, New York, NY" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :score %><br>
+        <%= f.text_field :score, placeholder: "Enter review score"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :url %><br>
+        <%= f.text_field :url, placeholder: "Enter url for review post/video" %>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :score %><br>
-    <%= f.text_field :score %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
