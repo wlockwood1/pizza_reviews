@@ -30,13 +30,17 @@
    width: 500px;
  }
 
-#reviews {
-  width: 80%;
-  margin: auto;
-}
+// #reviews {
+//   width: 80%;
+//   margin: auto;
+// }
 
 .review_name {
   cursor: pointer;
+}
+
+.tableDiv {
+  margin-bottom: 15px;
 }
 
 table thead {
@@ -45,10 +49,54 @@ table thead {
   background-color: #FFF;
 }
 
-// .table {
-//   max-height: 125px;
-//   overflow-y: auto;
-// }
+div.tableContainer {
+	clear: both;
+	// border: 1px solid #963;
+	height: 285px;
+	overflow: auto;
+	width: 80%;
+  margin: auto;
+}
+
+html>body div.tableContainer {
+	overflow: hidden;
+	width: 80%;
+}
+
+/* Reset overflow value to hidden for all non-IE browsers. */
+html>body div.tableContainer {
+	overflow: hidden;
+	width: 80%;
+}
+
+thead.fixedHeader tr {
+	position: relative;
+}
+
+thead.fixedHeader th td{
+	text-align: left
+}
+
+thead.fixedHeader th.sortable {
+	cursor:pointer;
+}
+
+html>body tbody.scrollContent {
+	display: block;
+	height: 262px;
+	overflow: auto;
+	width: 100%;
+}
+
+html>body tbody.scrollContent tr {
+	width: 100%;
+}
+
+html>body thead.fixedHeader {
+	display: table;
+	overflow: auto;
+	width: 100%;
+}
 
 .delete_review {
   color: red;

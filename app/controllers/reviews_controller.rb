@@ -56,15 +56,15 @@ class ReviewsController < ApplicationController
 
   private
     def sortable_columns
-      ["review_date", "name", "score"]
+      ["review_date", "name", "address", "score"]
     end
 
     def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : "name"
+      sortable_columns.include?(params[:column]) ? params[:column] : "review_date"
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 
     def set_review

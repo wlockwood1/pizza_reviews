@@ -9,9 +9,9 @@ class Review < ActiveRecord::Base
 
   def review_infowindow
     "<h3><a href='#{url}' target='_blank'>#{name}</a></h3>
-    #{address}</br>
-    Review Date: #{review_date}</br>
-    Score: #{score}"
+    <strong>#{address}</strong></br>
+    <strong>Review Date: </strong>#{review_date}</br>
+    <strong>Score: </strong>#{score}"
   end
 
   def review_marker_picture
