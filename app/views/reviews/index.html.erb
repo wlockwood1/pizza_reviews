@@ -3,60 +3,63 @@
 <div class="container">
   <div class="row">
     <% if @reviews.any? %>
-      <div class="col-md-12 text-center">
-        <h3>Pizza Reviews</h3>
+      <div class="col-md-12" id="mapDiv">
+        <h3>One Bite: You Know The Rules...</h3>
         <br/>
-        <div class="text-center" id="map" style="width: 800px; height: 400px; margin-left: 15%"></div>
+        <div id="map"></div>
         <script>
+          function buildMap() {
+            function bindReviewToMarker($li, marker){
+              $li.on('click', function(){
+                handler.getMap().setZoom(16);
+                marker.setMap(handler.getMap()); //because clusterer removes map property from marker
+                marker.panTo();
+                google.maps.event.trigger(marker.getServiceObject(), 'click');
+                $('html, body').animate({
+                    scrollTop: $("#map").offset().top
+                }, 1000);
+              })
+            };
 
-        function buildMap() {
-          function bindReviewToMarker($li, marker){
-            $li.on('click', function(){
-              handler.getMap().setZoom(18);
-              marker.setMap(handler.getMap()); //because clusterer removes map property from marker
-              marker.panTo();
-              google.maps.event.trigger(marker.getServiceObject(), 'click');
-            })
-          };
+            function bindClick(review_array) {
+              _.each(review_array, function(json){
+                var id = json.data.id;
+                var review = $(".review_name[data-id='" + id + "']");
+                bindReviewToMarker(review, json.marker);
+              });
+            };
 
-          function bindClick(review_array) {
-            _.each(review_array, function(json){
-              var id = json.data.id;
-              var review = $(".review_name[data-id='" + id + "']");
-              bindReviewToMarker(review, json.marker);
+            var review_array = <%=raw @hash.to_json %>
+            var handler = Gmaps.build('Google');
+            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers(review_array);
+
+              _.each(review_array, function(json, index){
+                json.marker = markers[index];
+              });
+
+              bindClick(review_array);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
             });
-          };
+          }
 
-          var review_array = <%=raw @hash.to_json %>
-          var handler = Gmaps.build('Google');
-          handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-            markers = handler.addMarkers(review_array);
+          buildMap();
 
-            _.each(review_array, function(json, index){
-              json.marker = markers[index];
-            });
-
-            bindClick(review_array);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-          });
-        }
-
-        buildMap();
         </script>
       </div>
     <% end %>
   </div>
   <hr />
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <table class="table table-condensed table-hover" id="reviews">
         <thead>
           <tr>
-            <th><%=sort_link "review_date", "Review Date" %></th>
-            <th><%=sort_link "name" %></th>
-            <th><%=sort_link "address" %></th>
-            <th><%=sort_link "score" %></th>
+            <th data-toggle="tooltip" data-placement="top" title="Click to sort by date"><%=sort_link "review_date", "Review Date" %></th>
+            <th data-toggle="tooltip" data-placement="top" title="Click to sort by name"><%=sort_link "name" %></th>
+            <th>Address</th>
+            <th data-toggle="tooltip" data-placement="top" title="Click to sort by score"><%=sort_link "score" %></th>
             <th>Video Link</th>
             <th colspan="1"></th>
           </tr>
@@ -68,7 +71,7 @@
       </table>
       <hr />
 
-      <%= link_to 'New Review', new_review_path, remote: true %>
+      <%= link_to 'New Review', new_review_path, remote: true, class: "btn btn-success new_review_btn" %>
 
       <div id="review-modal" class="modal fade">
       </div>

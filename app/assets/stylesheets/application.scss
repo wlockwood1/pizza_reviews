@@ -16,25 +16,54 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "bootstrap-datepicker";
+ @import 'https://fonts.googleapis.com/css?family=Lato';
+
+ body {
+   font-family: 'Lato', sans-serif;
+ }
+
+ .navbar {
+   height: 90px;
+ }
 
  .form-group input {
    width: 500px;
  }
 
- .reviews th .current {
-  padding-right: 12px;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.reviews th .asc {
-  background-image: url(/images/up_arrow.gif);
-}
-
-.reviews th .desc {
-  background-image: url(/images/down_arrow.gif);
+#reviews {
+  width: 80%;
+  margin: auto;
 }
 
 .review_name {
   cursor: pointer;
+}
+
+table thead {
+  border-top: none;
+  border-bottom: none;
+  background-color: #FFF;
+}
+
+// .table {
+//   max-height: 125px;
+//   overflow-y: auto;
+// }
+
+.delete_review {
+  color: red;
+}
+
+.new_review_btn {
+  float: right;
+}
+
+#mapDiv {
+  text-align: center;
+}
+
+#map {
+  width: 80%;
+  height: 400px;
+  margin: auto;
 }

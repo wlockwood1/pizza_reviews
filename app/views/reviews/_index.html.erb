@@ -4,8 +4,16 @@
     <td class="review_name" data-id="<%= review.id %>"><a><%= review.name %></a></td>
     <td><%= review.address %></td>
     <td><%= review.score %></td>
-    <td><%= link_to review.url, "Video", target: "_blank" %></td>
-    <td><%= link_to "Edit", edit_review_path(review), remote: true, class: "btn btn-default" %></td>
-    <td><%= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger delete_review" %></td>
+    <td><%= link_to "Video", review.url, target: "_blank" %></td>
+    <td>
+      <%= link_to edit_review_path(review), remote: true do %>
+        <i class="glyphicon glyphicon-pencil"></i>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to review, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete_review", remote: true do %>
+        <i class="glyphicon glyphicon-remove-circle" ></i>
+      <% end %>
+    </td>
   </tr>
 <% end %>

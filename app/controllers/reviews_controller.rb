@@ -12,6 +12,11 @@ class ReviewsController < ApplicationController
       marker.infowindow review.review_infowindow
       marker.picture review.review_marker_picture
     end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def show
@@ -51,7 +56,7 @@ class ReviewsController < ApplicationController
 
   private
     def sortable_columns
-      ["review_date", "name", "address", "score"]
+      ["review_date", "name", "score"]
     end
 
     def sort_column

@@ -17,8 +17,8 @@ class Review < ActiveRecord::Base
   def review_marker_picture
     ({
       :url     => "/assets/El_pres.jpg",
-      :width   => 40,
-      :height  => 52
+      :width   => 26,
+      :height  => 34
     })
   end
 end
