@@ -26,18 +26,27 @@
    height: 90px;
  }
 
+ .navbar-right {
+   margin-right: 0px;
+ }
+ 
+ .navbar-right a {
+  font-size: 18px;
+ }
+
  .form-group input {
    width: 500px;
  }
 
-// #reviews {
-//   width: 80%;
-//   margin: auto;
-// }
+ #mapDiv {
+   text-align: center;
+ }
 
-.review_name {
-  cursor: pointer;
-}
+ #map {
+   width: 80%;
+   height: 400px;
+   margin: auto;
+ }
 
 .tableDiv {
   margin-bottom: 15px;
@@ -51,7 +60,6 @@ table thead {
 
 div.tableContainer {
 	clear: both;
-	// border: 1px solid #963;
 	height: 285px;
 	overflow: auto;
 	width: 80%;
@@ -63,10 +71,15 @@ html>body div.tableContainer {
 	width: 80%;
 }
 
-/* Reset overflow value to hidden for all non-IE browsers. */
 html>body div.tableContainer {
 	overflow: hidden;
 	width: 80%;
+}
+
+html>body thead.fixedHeader {
+	display: table;
+	overflow: auto;
+	width: 100%;
 }
 
 thead.fixedHeader tr {
@@ -92,26 +105,33 @@ html>body tbody.scrollContent tr {
 	width: 100%;
 }
 
-html>body thead.fixedHeader {
-	display: table;
-	overflow: auto;
-	width: 100%;
+.review_name {
+  cursor: pointer;
 }
 
 .delete_review {
   color: red;
 }
 
-.new_review_btn {
-  float: right;
+.newReviewDiv {
+  width: 90%;
 }
 
-#mapDiv {
+.new_review_btn,
+.logout_btn {
+  float: right;
+  padding-bottom: 10px;
+}
+
+.deviseFormDiv {
   text-align: center;
 }
 
-#map {
-  width: 80%;
-  height: 400px;
-  margin: auto;
+.deviseFormDiv .field {
+  margin-bottom: 10px;
+}
+
+.deviseFormDiv .field input[type="password"],
+.deviseFormDiv .field input[type="email"]  {
+  width: 300px;
 }

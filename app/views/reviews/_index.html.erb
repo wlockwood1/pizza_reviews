@@ -5,14 +5,20 @@
     <td width="30%"><%= review.address %></td>
     <td width="15%"><%= review.score %></td>
     <td width="15%"><%= link_to "Video", review.url, target: "_blank" %></td>
+    <% if current_user.try(:admin?) %>
+    <% end %>
     <td width="3%">
-      <%= link_to edit_review_path(review), remote: true do %>
-        <i class="glyphicon glyphicon-pencil"></i>
+      <% if current_user.try(:admin?) %>
+        <%= link_to edit_review_path(review), remote: true do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+        <% end %>
       <% end %>
     </td>
     <td>
-      <%= link_to review, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete_review", remote: true do %>
-        <i class="glyphicon glyphicon-remove-circle" ></i>
+      <% if current_user.try(:admin?) %>
+        <%= link_to review, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete_review", remote: true do %>
+          <i class="glyphicon glyphicon-remove-circle" ></i>
+        <% end %>
       <% end %>
     </td>
   </tr>
