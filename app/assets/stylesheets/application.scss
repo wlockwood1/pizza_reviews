@@ -29,7 +29,7 @@
  .navbar-right {
    margin-right: 0px;
  }
- 
+
  .navbar-right a {
   font-size: 18px;
  }
@@ -86,7 +86,8 @@ thead.fixedHeader tr {
 	position: relative;
 }
 
-thead.fixedHeader th td{
+thead.fixedHeader th {
+  padding: 4px 3px;
 	text-align: left
 }
 
@@ -103,6 +104,10 @@ html>body tbody.scrollContent {
 
 html>body tbody.scrollContent tr {
 	width: 100%;
+}
+
+tbody .scrollContent td {
+  padding: 2px 3px 3px 4px
 }
 
 .review_name {
