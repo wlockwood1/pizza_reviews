@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(version: 20160918000526) do
   enable_extension "plpgsql"
 
   create_table "reviews", force: :cascade do |t|
+    t.date     "review_date"
     t.string   "name"
     t.string   "address"
-    t.string   "score"
+    t.decimal  "score"
     t.string   "url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.float    "latitude"
     t.float    "longitude"
-    t.date     "review_date"
   end
 
   create_table "users", force: :cascade do |t|
