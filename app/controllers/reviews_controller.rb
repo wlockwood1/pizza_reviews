@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @reviews = Review.order("#{sort_column} #{sort_direction}")
+    @reviews = Review.all
 
     @hash = Gmaps4rails.build_markers(@reviews) do |review, marker|
       marker.lat review.latitude
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @reviews = Review.order('score desc')
+    @reviews = Review.all
     @review = Review.find(params[:id])
 
     @review.update_attributes(review_params)
@@ -55,23 +55,23 @@ class ReviewsController < ApplicationController
   end
 
   private
-    def sortable_columns
-      ["review_date", "name", "address", "score"]
-    end
-
-    def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : "review_date"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-    end
+    # def sortable_columns
+    #   ["review_date", "name", "address", "score"]
+    # end
+    #
+    # def sort_column
+    #   sortable_columns.include?(params[:column]) ? params[:column] : "review_date"
+    # end
+    #
+    # def sort_direction
+    #   %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    # end
 
     def set_review
       @review = Review.find(params[:id])
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:review_date, :name, :address, :score, :url)
+      params.require(:review).permit(:review_date, :name, :address, :score, :guest, :url)
     end
 end
