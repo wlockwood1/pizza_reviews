@@ -3,8 +3,9 @@
     <td width="15%"><%= review.review_date %></td>
     <td width="25%" data-toggle="tooltip" data-placement="top" title="Click to see on map" class="review_name" data-id="<%= review.id %>"><a><%= review.name %></a></td>
     <td width="30%"><%= review.address %></td>
-    <td width="15%"><%= review.score %></td>
-    <td width="15%"><%= link_to "Video", review.url, target: "_blank" %></td>
+    <td width="5%"><%= review.score %></td>
+    <td width="15%"><%= review.guest %></td>
+    <td width="10%"><%= link_to "Video", review.url, target: "_blank" %></td>
     <% if current_user.try(:admin?) %>
     <% end %>
     <td width="3%">

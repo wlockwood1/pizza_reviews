@@ -11,7 +11,8 @@ class Review < ActiveRecord::Base
     "<h3><a href='#{url}' target='_blank'>#{name}</a></h3>
     <strong>#{address}</strong></br>
     <strong>Review Date: </strong>#{review_date}</br>
-    <strong>Score: </strong>#{score}"
+    <strong>Score: </strong>#{score}</br>
+    <strong>Guests: </strong>#{guest}"
   end
 
   def review_marker_picture

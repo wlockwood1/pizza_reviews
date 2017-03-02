@@ -21,6 +21,10 @@
         <%= f.label :url %><br>
         <%= f.text_field :url, placeholder: "Enter url for review post/video" %>
       </div>
+      <div class="form-group">
+        <%= f.label :guest %><br>
+        <%= f.text_field :guest, placeholder: "Enter guest(s) that participated in the review" %>
+      </div>
       <div class="modal-footer">
         <%= f.submit class: "btn btn-primary" %>
         <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
